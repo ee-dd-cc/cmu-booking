@@ -57,7 +57,7 @@ const PageBottom: React.FC<Iprops> = ({routerInfo}) => {
   
   const handleActive = (key: string) => {
     setActiveKey(key)
-    if (!userInfo.token && key === 'userCenter') {
+    if (!userInfo.token && (key === 'userCenter' || key === 'myOrder')) {
       goBookingRouter({pathKey: 'login'})
     } else {
       goBookingRouter({pathKey: key})
