@@ -83,7 +83,7 @@ const mUserInfo: React.FC<Iprops> = ({ routerInfo }) => {
           ]}
         >
           <div>
-            <Input value={phone} onChange={val => setPhone(val)} placeholder='Enter phone number' />
+            <Input value={phone} onChange={val => setPhone(val)} placeholder='Enter phone number' readOnly />
           </div> 
         </Form.Item>
         <Form.Item name='gender' label='gender' rules={[{ required: true }]}>

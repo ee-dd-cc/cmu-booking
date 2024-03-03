@@ -3,7 +3,7 @@ import Styles from '../style.module.scss'
 import { USER_INFO_SET } from '@/constants/booking'
 import { goBookingRouter } from '@/utils/router'
 import { setUserInfo } from '@/utils/storage'
-import { Form, Button, Input, Toast } from 'antd-mobile'
+import { Form, Button, Input, Toast, Modal } from 'antd-mobile'
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons'
 
 interface Iprops {
@@ -28,6 +28,18 @@ const Reset: React.FC<Iprops> = ({changeType}) => {
   }, [])
 
   const loginSubmit = () => {
+    if (phone != '66666666' && phone != '99999999' && phone != '88888888') {
+      Modal.show({
+        content: <div>
+          <p>The account does not exist, please register !</p>
+          <div style={{display: 'flex', 'justifyContent': 'flex-end'}}>
+            <Button color='primary' fill='none' onClick={() => Modal.clear()}>OK</Button>
+          </div>
+        </div>,
+        closeOnMaskClick: true
+      })
+      return
+    }
     setUserInfo(USER_INFO_SET)
     goBookingRouter({pathKey: 'home'})
     Toast.show({
