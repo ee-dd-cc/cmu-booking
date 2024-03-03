@@ -116,15 +116,11 @@ const Payment: React.FC<Iprops> = ({}) => {
           <p className={Styles['user-title']}>Select payment type</p>
           <div>
             <CapsuleTabs>
-              <CapsuleTabs.Tab title='Alipay' key='Alipay'>
-                {/* Alipay */}
-              </CapsuleTabs.Tab>
-              <CapsuleTabs.Tab title='Bank' key='Bank'>
-                {/* 西红柿 */}
-              </CapsuleTabs.Tab>
-              <CapsuleTabs.Tab title='Visa' key='Visa'>
-                {/* 蚂蚁 */}
-              </CapsuleTabs.Tab>
+              <CapsuleTabs.Tab title='Bank Card' key='Bank' />
+              <CapsuleTabs.Tab title='Credit Card' key='Credit' />
+              <CapsuleTabs.Tab title='Visa' key='Visa' />
+              <CapsuleTabs.Tab title='Alipay' key='Alipay' />
+              <CapsuleTabs.Tab title='Wechat' key='Wechat' />
             </CapsuleTabs>
           </div>
           <Form

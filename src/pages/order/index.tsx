@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './style.module.scss'
 import { ROOM_LIST, SHOP_PIC_LIST, PAYMENT_LIST } from '@/constants/booking'
-import { Image, CapsuleTabs, Toast, Mask, DotLoading } from 'antd-mobile'
+import { Image, CapsuleTabs, Toast, Dialog } from 'antd-mobile'
 import HotelSearch from '@/components/common/HotelSearch'
 import { goBookingRouter } from '@/utils/router'
 
@@ -40,7 +40,6 @@ const SHOP_TAG = [
 
 const index: React.FC<Iprops> = ({routerInfo}) => {
   const { query = {} } = routerInfo
-  const [visible, setVisible] = useState(false)
   const [activeKey, setActiveKey] = useState(PAYMENT_LIST[0].key)
   const [shopInfo, setShopInfo] = useState(ROOM_LIST[0])
   const [pics, setPics] = useState(SHOP_PIC_LIST.filter((item, index) => index < 5))
@@ -73,17 +72,24 @@ const index: React.FC<Iprops> = ({routerInfo}) => {
   }
 
   const handleOrder = () => {
-    setVisible(true)
-    setTimeout(() => {
-      setVisible(false)
-      Toast.show({
-        icon: 'success',
-        content: 'success',
-      })
-      goBookingRouter({pathKey: 'myOrder'})
-    }, 1000)
+    Dialog.confirm({
+      content: 'Whether to pay ?',
+      confirmText: 'Comfirm',
+      cancelText: 'Cancel',
+      onConfirm: async () => {
+        await sleep(1.5)
+        goBookingRouter({pathKey: 'myOrder'})
+        Toast.show({
+          icon: 'success',
+          content: 'success',
+        })
+      },
+    })
   }
-
+  // duration 单位 s
+  const sleep = (duration: number) => {
+    return new Promise(resolve => setTimeout(resolve, duration * 1000));
+  }
   return (
     <div className={Styles['container']}>
       <div className={Styles['shop-box']}>
@@ -145,9 +151,6 @@ const index: React.FC<Iprops> = ({routerInfo}) => {
           }
         </CapsuleTabs>
       </div>
-      <Mask visible={visible} onMaskClick={() => setVisible(false)}>
-        <div className={Styles.overlayContent}><DotLoading color='white' /></div>
-      </Mask>
       <div className={Styles['order-btn-box']}>
         <div className="theme-btn" onClick={() => handleOrder()}>
           <p>Pay</p>

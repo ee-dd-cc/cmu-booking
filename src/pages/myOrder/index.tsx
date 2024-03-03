@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Styles from './style.module.scss'
 import dayjs from 'dayjs'
 import { ORDER_LIST } from '@/constants/booking'
-import { CapsuleTabs, Image, Rate, Toast } from 'antd-mobile'
+import { CapsuleTabs, Image, Rate, Toast, Dialog } from 'antd-mobile'
 
 interface Iprops {
   
@@ -26,12 +26,25 @@ const index: React.FC<Iprops> = ({}) => {
   }
 
   const handleCancel = (id: number) => {
-    const temp = orderList.filter(item => item.id !== id)
-    Toast.show({
-      icon: 'success',
-      content: 'success',
+    Dialog.confirm({
+      content: 'Cancel or not ?',
+      confirmText: 'Comfirm',
+      cancelText: 'Cancel',
+      onConfirm: async () => {
+        await sleep(1.5)
+        const temp = orderList.filter(item => item.id !== id)
+        setOrderList(temp)
+        Toast.show({
+          icon: 'success',
+          content: 'success',
+        })
+      },
     })
-    setOrderList(temp)
+  }
+
+  // duration 单位 s
+  const sleep = (duration: number) => {
+    return new Promise(resolve => setTimeout(resolve, duration * 1000));
   }
 
   return (
@@ -58,12 +71,17 @@ const index: React.FC<Iprops> = ({}) => {
                 <span>No: {item.no}</span>
               </div>
               <div className={Styles['rate-box']}>
-                <Rate value={item.start} style={{'--star-size': '12px', marginRight: '10px'}} />
-                <span>{item.score}</span>
+                <div>
+                  <Rate value={item.start} style={{'--star-size': '12px', marginRight: '10px'}} />
+                  <span>{item.score}</span>
+                </div>
+                <p>{item.roomType}</p>
               </div>
               <div className={Styles['member-box']}>
+                {item.people} members
+                &nbsp;/&nbsp;
                 {dayjs(item.startTime).format('MMM DD')}
-                &nbsp;&nbsp;-&nbsp;&nbsp;
+                &nbsp;-&nbsp;
                 {dayjs(item.endTime).format('MMM DD')}
                 {/* <Rate value={item.start} style={{'--star-size': '12px', marginRight: '10px'}} />
                 <span>{item.score}</span> */}
