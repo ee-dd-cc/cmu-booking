@@ -1,0 +1,24 @@
+.form-item {
+  display: flex;
+  .form-item-left {
+    margin-right: 20px;
+  }
+}
+
+.login-btn {
+  margin-bottom: 20px;
+}
+
+.form-footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.eye {
+  padding: 4px;
+  cursor: pointer;
+  svg {
+    display: block;
+    font-size: var(--adm-font-size-7);
+  }
+}

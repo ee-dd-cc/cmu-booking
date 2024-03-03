@@ -1,0 +1,97 @@
+
+@import './theme.scss';
+@import './handle.scss'; // 处理主题色的方法
+
+// 字体相关
+$font-mini-xs: 10px;
+$font-mini: 12px;
+$font-normal: 14px;
+$font-large: 16px;
+$font-large-xs: 18px;
+$font-large-xxs: 20px;
+$font-large-xxxs: 22px;
+$font-large-xxxxs: 24px;
+$font-large-5xs: 26px;
+$font-large-6xs: 28px;
+// margin相关
+$margin-mini-xxxs: 6px;
+$margin-mini-xxs: 8px;
+$margin-mini-xs: 10px;
+$margin-mini: 12px;
+$margin-normal: 14px;
+$margin-large: 16px;
+$margin-large-xs: 18px;
+$margin-large-xxs: 20px;
+$margin-large-xxxs: 22px;
+$margin-large-xxxxs: 24px;
+
+// padding相关
+$padding-mini-xxxs: 6px;
+$padding-mini-xxs: 8px;
+$padding-mini-xs: 10px;
+$padding-mini: 12px;
+$padding-normal: 14px;
+$padding-large: 16px;
+$padding-large-xs: 18px;
+$padding-large-xxs: 20px;
+$padding-large-xxxs: 22px;
+$padding-large-xxxxs: 24px;
+
+// 宽度相关
+$width-body-min: 1280px;
+$width-sider-min: 216px;
+$width-sider: 238px;
+$width-app: 799px;
+// 高度相关
+$height-header: 62px;
+$height-app-header: 56px;
+
+// 其它
+$head-zindex: 1000;
+$menu-zindex: 999;
+$top-zindex: 9999;
+
+@mixin flex() {
+  display: flex;
+}
+
+@mixin column-xs() {
+  flex-direction: column;
+}
+
+@mixin middle-xs {
+  align-items: center;
+}
+
+@mixin center-xs {
+  justify-content: center;
+}
+
+@mixin space-xs() {
+  justify-content: space-between;
+}
+
+@mixin end-xs() {
+  justify-content: flex-end;
+}
+
+
+
+@mixin ellipsis($line) {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: $line;
+}
+
+@mixin ellipsis1() {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@mixin hover-normal() {
+  cursor: pointer;
+  color: getColor('hover_normal');
+}

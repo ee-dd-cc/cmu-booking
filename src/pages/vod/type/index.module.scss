@@ -1,0 +1,74 @@
+.card-container {
+  @include bg_color('bg_card');
+  margin-bottom: 32px;
+  padding: 8px 16px;
+  border: 1px solid getColor('line_normal');
+  border-radius: 8px;
+  .card-title {
+    @include flex;
+    @include middle-xs;
+    position: relative;
+    width: 100%;
+    height: 40px;
+    &:after {
+      position: absolute;
+      left: 0;
+      bottom: -4px;
+      display: inline-block;
+      content: '';
+      width: 100%;
+      height: 1px;
+      background-color: getColor('line_normal');
+    }
+    .card-title-label {
+      margin-right: 16px;
+      font-size: $font-large-xxxs;
+      font-weight: 500;
+    }
+    .more-btn {
+      @include flex;
+      @include middle-xs;
+      position: absolute;
+      right: 0;
+      span {
+        margin-left: 8px;
+      }
+    }
+  }
+  .tab-container {
+    @include flex;
+    .tab-item {
+      @include flex;
+      @include middle-xs;
+      position: relative;
+      padding: 7.5px 0;
+      margin: 0 $margin-mini;
+      // margin-right: 2px;
+      line-height: 1;
+      cursor: pointer;
+      color: getColor('text_sub');
+      border: 1px solid getColor('bg_card');
+      transition: all .2s linear;
+      font-size: $font-large;
+      &:first-child {
+        margin-left: $margin-large;
+      }
+      &:hover,
+      &.active {
+        font-weight: 600;
+        color: getColor('text_normal');
+        &:after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: -7px;
+          width: 100%;
+          height: 3px;
+          transform: scale(1.2);
+          background-color: getColor('active_normal');
+          border-radius: 2px;
+        }
+      }
+    }
+  }
+}

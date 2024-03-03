@@ -1,0 +1,7 @@
+.container {
+  @include flex;
+  @include middle-xs;
+  @include center-xs;
+  width: 100%;
+  height: 200px;
+}

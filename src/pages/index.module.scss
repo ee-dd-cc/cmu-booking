@@ -1,0 +1,42 @@
+.banner-container {
+  margin-bottom: 32px;
+}
+
+// 移动端
+@media all and (max-width: $width-app) {
+  .banner-container {
+    margin-bottom: $margin-large-xxs;
+  }
+}
+
+.card-container {
+  // border: 1px solid red
+}
+
+.card-title {
+  font-size: 18;
+  font-weight: 600;
+}
+
+.card-title-des {
+  font-size: 12px;
+  font-weight: 400;
+  color: #999;
+}
+
+.card-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.card-content-item {
+  width: 50%;
+  margin-bottom: 10px;
+  padding-right: 5px;
+}
+
+.card-content-item-2 {
+  width: 50%;
+  margin-bottom: 10px;
+  padding-left: 5px;
+}

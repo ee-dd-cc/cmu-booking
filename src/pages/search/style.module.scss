@@ -1,0 +1,31 @@
+.container {
+  padding: 0 16px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  padding: 10px 5px;
+  padding-left: 20px;
+  border: 1px solid #ffe033;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.point {
+  display: inline-block;
+  width: 3px;
+  height: 3px;
+  margin: 0 10px;
+  background-color: #999;
+  border-radius: 50%;
+}
+
+.line {
+  display: inline-block;
+  width: 10px;
+  height: 1px;
+  margin: 0 10px;
+  background-color: #999;
+}

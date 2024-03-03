@@ -1,0 +1,44 @@
+.container {
+  @include font_color('text_sub1');
+  @include flex;
+  @include middle-xs;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-left: $padding-large-xxs;
+  background-color: getColor('bg_input');
+  border: 0.5px solid getColor('bg_input');
+  border-radius: 30px;
+  .search-input {
+    height: 100%;
+    // --placeholder-color: getColor('text_sub1')
+  }
+  .icon-box {
+    @include flex;
+    @include middle-xs;
+    @include center-xs;
+    width: 50px;
+    height: 100%;
+    font-size: $font-large;
+    font-weight: 700;
+    background-color: getColor('bg_input');
+    border-left: 0.5px solid getColor('line_sub');
+    border-radius: 0px 30px 30px 0px;
+    cursor: pointer;
+  }
+  .result-wrap {
+    position: absolute;
+    width: 100%;
+    max-height: 390px;
+    left: 0;
+    top: 38px; // input高度 + 4px
+    overflow-y: auto;
+    border-radius: 6px;
+    background-color: getColor('bg_card');
+  }
+}
+
+// 移动端
+@media all and (max-width: $width-app) {
+  
+}

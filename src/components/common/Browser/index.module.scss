@@ -1,0 +1,37 @@
+.container {
+  @include flex;
+  @include column-xs;
+  @include middle-xs;
+  @include center-xs;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: $top-zindex;
+  background-color: #fff;
+  p {
+    margin-bottom: $margin-mini;
+    font-size: $font-large;
+  }
+  > span {
+    @include font_color('theme_color');
+    margin-bottom: $margin-mini-xxs;
+    // font-size: $font-large;
+  }
+}
+.img-tip {
+  @include flex;
+  @include end-xs;
+}
+.button {
+  border: 1px solid getColor('theme_color') !important;
+  color: getColor('theme_color');
+  // --border-color: getColor('theme_color') !important;
+  // --text-color: getColor('theme_color') !important;
+}
+.img {
+  width: 0;
+  height: 0;
+  opacity: 0;
+}

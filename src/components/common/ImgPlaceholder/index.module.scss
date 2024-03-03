@@ -1,0 +1,5 @@
+.container {
+  @include flex;
+  @include center-xs;
+  @include middle-xs;
+}

@@ -1,0 +1,67 @@
+
+$themes: (
+  light: (
+    // 主题色
+    theme_color: #1D9BF0, // 主题色
+    // 字体颜色
+    text_normal: #0F131A, // 正文颜色
+    text_sub: #888888, // 次要文本
+    text_sub1: #576370, // input 提示/榜单条目
+    text_sub2: #57606A, // 社区数量文本等
+    text_sub3: #F7F9F9, // 影视详情页card
+    text_sub4: #DADADA, // 影视卡片暂无评分
+    text_light: #e50914, // 高亮
+    // 背景色
+    bg_normal: #FFFFFF,
+    bg_menu_active: #EDF0F3,
+    bg_card: #fff,
+    bg_card_rank: #F7F9F9,
+    bg_input: #EFF3F4,
+    bg_rank: #EFF1F1,
+    // 边框分界线
+    line_normal: #EFF3F4, // 菜单分隔/海报墙分割
+    line_sub: #D1D9DD, // 影视详情页分割线
+    // hover
+    hover_normal: #1D9BF0,
+    // active
+    active_normal: #1D9BF0,
+    // 其它
+    star_normal: #FFAC2D, // 星星
+    logo_text: #15202B,
+    rank_1: #FF6677, // 排行榜
+    rank_2: #F98C56,
+    rank_3: #FFC168,
+  ),
+  dark: (
+    // 主题色
+    theme_color: #1D9BF0, // 主题色
+    // 字体颜色
+    text_normal: #0F1419, // 正文颜色
+    text_sub: #888888, // 次要文本
+    text_sub1: #576370, // input 提示/榜单条目
+    text_sub2: #57606A, // 社区数量文本等
+    text_sub3: #F7F9F9, // 影视详情页card
+    text_sub4: #DADADA, // 影视卡片暂无评分
+    text_light: #e50914, // 高亮
+    // 背景色
+    bg_normal: #FFFFFF,
+    bg_menu_active: #EDF0F3,
+    bg_card: #fff,
+    bg_card_rank: #F7F9F9,
+    bg_input: #EFF3F4,
+    bg_rank: #EFF1F1,
+    // 边框分界线
+    line_normal: #EFF3F4, // 菜单分隔/海报墙分割
+    line_sub: #D1D9DD, // 影视详情页分割线
+    // hover
+    hover_normal: #1D9BF0,
+    // active
+    active_normal: #1D9BF0,
+    // 其它
+    star_normal: #FFAC2D, // 星星
+    logo_text: #15202B,
+    rank_1: #FF6677, // 排行榜
+    rank_2: #F98C56,
+    rank_3: #FFC168,
+  )
+);

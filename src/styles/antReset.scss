@@ -1,0 +1,61 @@
+// 重置导航栏样式
+
+.ant-menu-inline .ant-menu-item {
+  margin: 0 auto;
+  margin-left: 0;
+  .ant-menu-title-content {
+    margin-left: 24px !important;
+  }
+  .ant-menu-item-icon {
+    font-size: 20px;
+  }
+}
+
+.ant-menu-light .ant-menu-item-selected {
+  position: relative;
+  background: none;
+  &:after {
+    @include bg_color('theme_color');
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+    width: 4px;
+    height: 28px;
+    border-radius: 2px;
+    inset-block: auto !important;
+  }
+}
+
+
+.adm-tab-bar-item-title {
+  margin-top: 12px !important;
+  font-size: 14px !important;
+}
+
+.adm-tab-bar-item-icon {
+  font-size: 32px !important;
+}
+
+.adm-search-bar .adm-search-bar-input-box .adm-search-bar-input {
+  height: 40px !important;
+}
+
+.adm-button:not(.adm-button-default) {
+  // background-color: #ffe033 !important;
+  // border-color: #ffe033 !important;
+  --text-color: #0F131A !important
+}
+
+
+.adm-button:not(.adm-button-default).adm-button-fill-outline {
+  background-color: transparent !important;
+  // color: #ffe033;
+}
+
+* {
+  // --adm-color-primary: #ffe033;
+  --adm-color-text-light-solid: #0F131A;
+}
+
+// .adm-button-danger 

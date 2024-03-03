@@ -1,0 +1,29 @@
+.container {
+  width: 100%;
+}
+
+.loading-box {
+  @include flex;
+  @include center-xs;
+  @include column-xs;
+  @include font_color('theme_color');
+  position: absolute;
+  z-index: 0;
+  height: calc(100% - $height-header);
+  left: 0;
+  top: $height-header;
+  width: 100%;
+  background-color: getColor('bg_normal');
+  > div {
+    text-align: center;
+  }
+}
+
+.ifarme {
+  position: absolute;
+  z-index: 1;
+  height: calc(100% - $height-header);
+  left: 0;
+  top: $height-header;
+  border: none;
+}
