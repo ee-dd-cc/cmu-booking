@@ -10,7 +10,7 @@ import HtmlHead from '@/components/HtmlHead'
 import PageHead from '@/components/PageHead'
 import PageBottom from '@/components/PageBottom'
 
-const bottomPath = ['/', '/userCenter']
+const bottomPath = ['/', '/myOrder', '/userCenter']
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()

@@ -86,7 +86,7 @@ const goBookingRouter = ({pathKey, query = {}, type = 'normal'}:RouterUrl) => {
   for (const key in query) {
     urlParams += `&${key}=${query[key]}`
   }
-  const { destination = '', startTime = '', endTime = '', id } = query
+  const { destination = '', startTime = '', endTime = '', id, orderType = '' } = query
   switch (pathKey) {
     case 'home':
       url =  `/`
@@ -121,6 +121,13 @@ const goBookingRouter = ({pathKey, query = {}, type = 'normal'}:RouterUrl) => {
     case 'roomList':
       url =  `/roomList`
       break;
+    case 'order':
+      url =  `/order?id=${id}`
+      break;
+    case 'myOrder':
+      url =  `/myOrder?type=${orderType}`
+      break;
+
     default:
       break;
   }

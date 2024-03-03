@@ -6,8 +6,50 @@ interface Iprops {
   routerInfo: any
 }
 
+const leftPath = ['/', '/myOrder', '/userCenter'] // 需要隐藏的路由
 
-const leftPath = ['/', '/userCenter'] // 需要隐藏的路由
+const routePath = [
+  {
+    pathname: '/',
+    pageTitle: 'Booking System',
+  },
+  {
+    pathname: '/myOrder',
+    pageTitle: 'My Booking',
+  },
+  {
+    pathname: '/userCenter',
+    pageTitle: 'User Center',
+  },
+  {
+    pathname: '/search',
+    pageTitle: 'Booking System',
+  },
+  {
+    pathname: '/shop',
+    pageTitle: ' ',
+  },
+  {
+    pathname: '/roomList',
+    pageTitle: 'Choose room',
+  },
+  {
+    pathname: '/order',
+    pageTitle: 'Payment',
+  },
+  {
+    pathname: '/userCenter/mUserInfo',
+    pageTitle: 'User information',
+  },
+  {
+    pathname: '/userCenter/star',
+    pageTitle: 'My star',
+  },
+  {
+    pathname: '/payment',
+    pageTitle: 'Pay method',
+  },
+]
 
 const index: React.FC<Iprops> = ({routerInfo}) => {
   const [showLeft, setShowLeft] = useState(false)
@@ -16,7 +58,8 @@ const index: React.FC<Iprops> = ({routerInfo}) => {
     const { pathname, query: { pageTitle = '' } } = routerInfo
     const lIndex = leftPath.findIndex(item => item === pathname)
     setShowLeft(lIndex === -1)
-    pageTitle && setTitle(pageTitle)
+    const page = routePath.find(item => item.pathname === pathname)
+    setTitle(page ? page.pageTitle : 'Booking System')
   }, [routerInfo])
 
   const back = () => {

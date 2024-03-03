@@ -225,21 +225,128 @@ const ROOM_LIST = [
 const PAYMENT_LIST = [
   {
     content: 'Alipay',
+    key: 'alipay',
+    des: '',
+    show: true
+  },
+  {
+    content: 'Wechat',
+    key: 'wechat',
     des: '',
     show: true
   },
   {
     content: 'Bank Card',
+    key: 'bank',
     des: '6699***6789',
-    pathKey: '/myRooms',
     show: true
   },
   {
     content: 'Visa Card',
+    key: 'visa',
     des: '7711***6780',
-    pathKey: '/myRooms',
     show: true
   }
+]
+
+const ORDER_LIST = [
+  {
+    id: 1,
+    name: 'Solitaire Sukhumvit',
+    roomName: '',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/122820072.webp?k=0660806d3e52eeeb799a101456031ba127a2f33049b9431153a8f106d0aad111&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 8.1,
+    start: 4.5,
+    price: 597,
+    isStar: false,
+    day: 2,
+    no: '218-1',
+    status: 'active',
+    startTime: '2024-3-5',
+    endTime: '2024-3-8'
+  },
+  {
+    id: 2,
+    name: 'SHA Extra Plus',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/470004451.webp?k=f87d351df9d943679ad890e666c7cb3f2e7964d5b980ba59f7be9790fa54de28&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 8.2,
+    start: 4.5,
+    price: 607,
+    isStar: true,
+    day: 2,
+    no: '318-2',
+    status: 'active',
+    startTime: '2024-3-6',
+    endTime: '2024-3-8'
+  },
+  {
+    id: 3,
+    name: 'Premium Hotel',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/170700857.webp?k=9eb9120b26f2ef6d45154f8bcb22b4f7ca76cd0c14b523ab5a5528653ac345f2&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 7.8,
+    start: 4,
+    price: 421,
+    isStar: false,
+    day: 2,
+    no: '518-2',
+    status: 'active',
+    startTime: '2024-3-4',
+    endTime: '2024-3-8'
+  },
+  {
+    id: 4,
+    name: 'Premium Hotel',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/474142106.webp?k=3ddcf47deba38d4c877ca3a0a3c6444ea7ce9a75f8385c86e283212c26355545&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 7.8,
+    start: 4.5,
+    price: 700,
+    isStar: false,
+    day: 2,
+    no: '33-1',
+    status: 'past',
+    startTime: '2024-2-4',
+    endTime: '2024-2-8'
+  },
+  {
+    id: 5,
+    name: 'ibis SathornOpens',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/299155617.webp?k=c4b92eb216d7adaa0625253921b452a32a543f98442a58a5b26887c412f0e105&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 7.8,
+    start: 3.5,
+    price: 650,
+    isStar: false,
+    day: 2,
+    no: '22-2',
+    status: 'past',
+    startTime: '2024-1-4',
+    endTime: '2024-1-6'
+  },
+  {
+    id: 6,
+    name: 'SHA Extra Plus',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/470004451.webp?k=f87d351df9d943679ad890e666c7cb3f2e7964d5b980ba59f7be9790fa54de28&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 8.1,
+    start: 4.5,
+    price: 607,
+    isStar: false,
+    day: 2,
+    no: '236-6',
+    status: 'cancel',
+    startTime: '2024-3-4',
+    endTime: '2024-3-6'
+  },
 ]
 
 export {
@@ -249,5 +356,7 @@ export {
   SHOP_LIST,
   USER_STAR,
   SHOP_PIC_LIST,
-  ROOM_LIST
+  ROOM_LIST,
+  PAYMENT_LIST,
+  ORDER_LIST
 }

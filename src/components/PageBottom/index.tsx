@@ -31,7 +31,7 @@ const PageBottom: React.FC<Iprops> = ({routerInfo}) => {
       badge: Badge.dot,
     },
     {
-      key: 'bookings',
+      key: 'myOrder',
       title: 'Bookings',
       icon: <FaceRecognitionOutline />,
       badge: '99+',
@@ -43,12 +43,16 @@ const PageBottom: React.FC<Iprops> = ({routerInfo}) => {
     },
   ] 
   useEffect(() => {
+    const { pathname } = routerInfo
     setUserInfo(getUserInfo())
-    if (routerInfo.pathname.indexOf('login') === -1) {
+    if (pathname.indexOf('login') === -1) {
       setShow(true)
     } else {
       setShow(false)
     }
+    pathname === '/' && setActiveKey('home')
+    pathname === '/myOrder' && setActiveKey('myOrder')
+    pathname === '/userCenter' && setActiveKey('userCenter')
   }, [routerInfo.pathname])
   
   const handleActive = (key: string) => {

@@ -1,0 +1,57 @@
+.container {
+  padding: 0 13.5px;
+  padding-top: 16px;
+}
+.tab-box {
+  margin-bottom: 10px;
+}
+.room-item {
+  display: flex;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+  .title-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-size: 18px;
+    span {
+      font-size: 14px;
+    }
+  }
+  .position-box,
+  .rate-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+  .member-box {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+    p {
+      padding-right: 10px;
+    }
+  }
+  .price-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .btn-box {
+    width: 80px;
+  }
+}
+
+.left {
+
+}
+
+.right {
+  flex: 1;
+  padding: 8px;
+  padding-left: 10px;
+}

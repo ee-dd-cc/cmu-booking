@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './style.module.scss'
 import { ROOM_LIST } from '@/constants/booking'
+import { goBookingRouter } from '@/utils/router'
 import { UserAddOutline } from 'antd-mobile-icons'
-// import
 
 interface Iprops {
 }
 
-interface Istate {
-}
-
-const initState = {
-}
-
 const index: React.FC<Iprops> = ({}) => {
-  const [state, setState] = useState<Istate>(initState)
   useEffect(() => {
   }, [])
+  const handleOrder = (id: number) => {
+    goBookingRouter({pathKey: 'order', query: { id }})
+  }
   return (
     <div className={Styles['container']}>
       {
@@ -37,7 +33,7 @@ const index: React.FC<Iprops> = ({}) => {
                 <p>THB {item.price}</p>
               </div>
               <div className={Styles['btn-box']}>
-                <div className="theme-btn-1">
+                <div className="theme-btn-1" onClick={() => handleOrder(item.id)}>
                   <p>Order</p>
                 </div>
               </div>

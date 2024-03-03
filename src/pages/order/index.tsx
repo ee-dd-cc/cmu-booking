@@ -1,14 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import dayjs from 'dayjs'
-import { SHOP_LIST, SHOP_PIC_LIST } from '@/constants/booking'
 import Styles from './style.module.scss'
-import { goBookingRouter } from '@/utils/router'
-import { Toast, Rate, Image } from 'antd-mobile'
-import { HeartFill, HeartOutline } from 'antd-mobile-icons'
+import { ROOM_LIST, SHOP_PIC_LIST, PAYMENT_LIST } from '@/constants/booking'
+import { Image, CapsuleTabs, Toast, Mask, DotLoading } from 'antd-mobile'
 import HotelSearch from '@/components/common/HotelSearch'
+import { goBookingRouter } from '@/utils/router'
 
 interface Iprops {
   routerInfo: any;
+}
+
+interface Istate {
+}
+
+const initState = {
 }
 
 const SHOP_TAG = [
@@ -34,27 +38,19 @@ const SHOP_TAG = [
   // },
 ]
 
-const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
+const index: React.FC<Iprops> = ({routerInfo}) => {
   const { query = {} } = routerInfo
-  const [shopInfo, setShopInfo] = useState(SHOP_LIST[0])
+  const [visible, setVisible] = useState(false)
+  const [activeKey, setActiveKey] = useState(PAYMENT_LIST[0].key)
+  const [shopInfo, setShopInfo] = useState(ROOM_LIST[0])
   const [pics, setPics] = useState(SHOP_PIC_LIST.filter((item, index) => index < 5))
-
   useEffect(() => {
     const { id } = query
-    const item = SHOP_LIST.find(item => item.id === id)
+    const item = ROOM_LIST.find(item => item.id === id)
     const tempPics = shuffleArray(SHOP_PIC_LIST).filter((itm:any, index:number) => index < 5)
     setPics(tempPics)
     item && setShopInfo(item)
   }, [routerInfo.query])
-
-  const onStar = () => {
-    const { isStar } = shopInfo
-    Toast.show({
-      icon: 'success',
-      content: 'success',
-    })
-    setShopInfo({...shopInfo, isStar: !isStar})
-  }
 
   const shuffleArray = (array:any) => {
     let currentIndex = array.length, temporaryValue, randomIndex;
@@ -72,8 +68,20 @@ const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
     return array;
   }
 
+  const handlePrice = (price: number) => {
+    return new Intl.NumberFormat('en-US').format(price)
+  }
+
   const handleOrder = () => {
-    goBookingRouter({pathKey: 'roomList'})
+    setVisible(true)
+    setTimeout(() => {
+      setVisible(false)
+      Toast.show({
+        icon: 'success',
+        content: 'success',
+      })
+      goBookingRouter({pathKey: 'myOrder'})
+    }, 1000)
   }
 
   return (
@@ -81,13 +89,14 @@ const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
       <div className={Styles['shop-box']}>
         <p className={Styles['title']}>
           {shopInfo.name}
+          <span>No: { shopInfo.no }</span>
           {
-            shopInfo.isStar ? <HeartFill onClick={() => onStar()} style={{color: '#ffe033'}} /> : <HeartOutline onClick={() => onStar()} />
+            // shopInfo.isStar ? <HeartFill onClick={() => onStar()} style={{color: '#ffe033'}} /> : <HeartOutline onClick={() => onStar()} />
           }  
         </p>
         <div className={Styles['rate-box']}>
-          <Rate value={shopInfo.start} style={{'--star-size': '18px', marginRight: '15px'}} />
-          <span>{shopInfo.score}</span>
+          {/* <Rate value={shopInfo.start} style={{'--star-size': '18px', marginRight: '15px'}} /> */}
+          {/* <span>{shopInfo.score}</span> */}
         </div>
         <div className={Styles['img-box']}>
           {
@@ -109,21 +118,42 @@ const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
           ))
         }
       </div>
-      <div className={Styles['des-box']}>
-        <p className={Styles['box-title']}>Property Description</p>
-        <span>
-          Oakwood Hotel &amp; Residence Bangkok SHA Plus Certified is a 3-minute walk from Saphan Taksin BTS Skytrain Station. It has an outdoor pool, a restaurant, and separate sauna rooms. WiFi is free in guest rooms. Sathorn pier, 1312 feet away, is...
-        </span>
-      </div>
       <div className={Styles['check-box']}>
         <HotelSearch hideBtn={true} hideSearch={true} />
       </div>
+      <div className={Styles['des-box']}>
+        <p className={Styles['box-title']}>Select Room Type</p>
+        <CapsuleTabs>
+          <CapsuleTabs.Tab title='Single' key='Single'>
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='Double' key='Double'>
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='Suite' key='Suite'>
+          </CapsuleTabs.Tab>
+        </CapsuleTabs>
+      </div>
+      <div className={Styles['des-box']}>
+        <p className={Styles['box-title']} style={{marginBottom: 0}}>Price for 2 night:&nbsp;&nbsp;&nbsp;THB {handlePrice(shopInfo.price * 2)}</p>
+      </div>
+      <div className={Styles['des-box']}>
+        <p className={Styles['box-title']}>Payment Method</p>
+        <CapsuleTabs activeKey={activeKey} onChange={val => setActiveKey(val)}>
+          {
+            PAYMENT_LIST.map((item) => (
+              <CapsuleTabs.Tab key={item.key} title={item.content} />
+            ))
+          }
+        </CapsuleTabs>
+      </div>
+      <Mask visible={visible} onMaskClick={() => setVisible(false)}>
+        <div className={Styles.overlayContent}><DotLoading color='white' /></div>
+      </Mask>
       <div className={Styles['order-btn-box']}>
         <div className="theme-btn" onClick={() => handleOrder()}>
-          <p>Select Rooms</p>
+          <p>Pay</p>
         </div>
       </div>
     </div>
   )
 }
-export default ShopDetail
+export default index

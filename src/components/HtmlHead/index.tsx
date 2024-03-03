@@ -56,7 +56,7 @@ class HtmlHead extends Component<Props, any> {
     const { router: { pathname }, pageProps } = this.props
     return (
       <Head>
-        <title>{HTML_TITLE({pathname, pageProps})}</title>
+        <title>Booking System</title>
         <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1, minimum-scale=1.0, user-scalable=false" />
         <meta name="referrer" content="no-referrer" />
         <meta name="keywords" content={HTML_KEYWORDS({pathname, pageProps})} />
