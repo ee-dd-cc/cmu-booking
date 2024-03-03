@@ -5,6 +5,7 @@ import { ORDER_LIST } from '@/constants/booking'
 import { CapsuleTabs, Image, Rate, Toast } from 'antd-mobile'
 
 interface Iprops {
+  
 }
 
 const index: React.FC<Iprops> = ({}) => {
@@ -14,6 +15,11 @@ const index: React.FC<Iprops> = ({}) => {
     const list = ORDER_LIST.filter(item => item.status === activeKey)
     setOrderList(list)
   }, [activeKey])
+
+  useEffect(() => {
+    const list = ORDER_LIST.filter(item => item.status === activeKey)
+    setOrderList(list)
+  }, [])
   
   const handlePrice = (price: number) => {
     return new Intl.NumberFormat('en-US').format(price)

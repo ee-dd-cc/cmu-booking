@@ -3,7 +3,7 @@ import Styles from '../style.module.scss'
 import { USER_INFO_SET } from '@/constants/booking'
 import { goBookingRouter } from '@/utils/router'
 import { setUserInfo } from '@/utils/storage'
-import { Form, Button, Input } from 'antd-mobile'
+import { Form, Button, Input, Toast } from 'antd-mobile'
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons'
 
 interface Iprops {
@@ -16,8 +16,8 @@ interface Istate {
 const initState = {
 }
 
-const phoneRegex = /^\d{9,}$/
-const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{6,}$/
+const phoneRegex = /^\d{8,}$/
+const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/
 
 const Reset: React.FC<Iprops> = ({changeType}) => {
   const [visible, setVisible] = useState(false)
@@ -30,6 +30,10 @@ const Reset: React.FC<Iprops> = ({changeType}) => {
   const loginSubmit = () => {
     setUserInfo(USER_INFO_SET)
     goBookingRouter({pathKey: 'home'})
+    Toast.show({
+      icon: 'success',
+      content: 'success',
+    })
   }
 
   return (
@@ -50,7 +54,7 @@ const Reset: React.FC<Iprops> = ({changeType}) => {
         label='Phone Number'
         rules={[
           { required: true, message: 'Please enter phone number' },
-          { pattern: phoneRegex, message: 'More than 9 number' }
+          { pattern: phoneRegex, message: 'More than 8 number' }
         ]}
       >
         <div className={Styles['form-item']}>
@@ -73,7 +77,7 @@ const Reset: React.FC<Iprops> = ({changeType}) => {
         label='Passord'
         rules={[
           { required: true, message: 'Please enter passord' },
-          { pattern: passwordRegex, message: 'More than 6 characters and uppercase and lowercase letters' }
+          { pattern: passwordRegex, message: 'More than 8 characters and uppercase and lowercase letters' }
         ]}
         extra={
           <div className={Styles.eye}>

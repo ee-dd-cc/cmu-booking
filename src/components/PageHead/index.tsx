@@ -49,6 +49,18 @@ const routePath = [
     pathname: '/payment',
     pageTitle: 'Pay method',
   },
+  {
+    pathname: '/login',
+    pageTitle: 'Login',
+  },
+  {
+    pathname: '/login/register',
+    pageTitle: 'Register',
+  },
+  {
+    pathname: '/login/reset',
+    pageTitle: 'Reset Password',
+  },
 ]
 
 const index: React.FC<Iprops> = ({routerInfo}) => {

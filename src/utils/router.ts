@@ -115,6 +115,12 @@ const goBookingRouter = ({pathKey, query = {}, type = 'normal'}:RouterUrl) => {
     case 'login':
       url =  `/login`
       break;
+    case 'register':
+      url =  `/login/register`
+      break;
+    case 'reset':
+      url =  `/login/reset`
+      break;
     case 'shop':
       url =  `/shop?id=${id}`
       break;

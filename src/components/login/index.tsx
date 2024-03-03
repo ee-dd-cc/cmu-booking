@@ -3,7 +3,7 @@ import Styles from './style.module.scss'
 import { USER_INFO_SET } from '@/constants/booking'
 import { goBookingRouter } from '@/utils/router'
 import { setUserInfo } from '@/utils/storage'
-import { Form, Button, Input } from 'antd-mobile'
+import { Form, Button, Input, Toast } from 'antd-mobile'
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons'
 
 interface Iprops {
@@ -28,6 +28,10 @@ const Login: React.FC<Iprops> = ({changeType}) => {
 
   const loginSubmit = () => {
     setUserInfo(USER_INFO_SET)
+    Toast.show({
+      icon: 'success',
+      content: 'success',
+    })
     goBookingRouter({pathKey: 'home'})
   }
 
@@ -37,12 +41,12 @@ const Login: React.FC<Iprops> = ({changeType}) => {
       onFinish={() => loginSubmit()}
       footer={
         <div className={Styles['form-footer']}>
-          <span className={Styles['form-des']} onClick={() => changeType('reset')}>Forget password?</span>
+          <span className={Styles['form-des']} onClick={() => goBookingRouter({pathKey: 'reset'})}>Forget password?</span>
           
           <Button className={Styles['login-btn']} block type='submit' color='primary' shape='rounded' size='middle'>
             Login
           </Button>
-          <Button className={Styles['register-btn']} onClick={() => changeType('register')} block color='primary' fill='outline' shape='rounded' size='middle'>
+          <Button className={Styles['register-btn']} onClick={() => goBookingRouter({pathKey: 'register'})} block color='primary' fill='outline' shape='rounded' size='middle'>
             Register
           </Button>
         </div>

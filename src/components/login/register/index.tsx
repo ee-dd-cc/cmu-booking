@@ -3,7 +3,7 @@ import Styles from '../style.module.scss'
 import { USER_INFO_SET } from '@/constants/booking'
 import { goBookingRouter } from '@/utils/router'
 import { setUserInfo } from '@/utils/storage'
-import { Form, Button, Input, Modal } from 'antd-mobile'
+import { Form, Button, Input, Modal, Toast } from 'antd-mobile'
 import { EyeInvisibleOutline, EyeOutline } from 'antd-mobile-icons'
 
 interface Iprops {
@@ -54,6 +54,10 @@ const Register: React.FC<Iprops> = ({}) => {
       return
     }
     setUserInfo(USER_INFO_SET)
+    Toast.show({
+      icon: 'success',
+      content: 'success',
+    })
     goBookingRouter({pathKey: 'home'})
   }
   return (

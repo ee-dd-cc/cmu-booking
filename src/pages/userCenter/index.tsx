@@ -6,9 +6,10 @@ import { goBookingRouter } from '@/utils/router'
 import { List, Avatar } from 'antd-mobile'
 import { CouponOutline, BillOutline, HeartOutline } from 'antd-mobile-icons'
 interface Iprops {
+  routerInfo: any
 }
 
-const UserCenter: React.FC<Iprops> = ({}) => {
+const UserCenter: React.FC<Iprops> = ({routerInfo}) => {
   const [userInfo, sUserInfo] = useState(USER_INFO)
   const [list, setList] = useState([
     {
@@ -62,8 +63,11 @@ const UserCenter: React.FC<Iprops> = ({}) => {
     sUserInfo(getUserInfo())
     const index = list.findIndex(item => item.key === 'user')
     list[index].content = getUserInfo().username
+    if (!getUserInfo().token) {
+      goBookingRouter({pathKey: 'home'})
+    }
     setList(list)
-  }, [])
+  }, [routerInfo])
   const goPath = (path: string) => {
     if (path === 'login') {
       setUserInfo(USER_INFO)
