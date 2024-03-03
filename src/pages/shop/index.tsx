@@ -5,6 +5,7 @@ import Styles from './style.module.scss'
 import { goBookingRouter } from '@/utils/router'
 import { Toast, Rate, Image, Button, CalendarPicker, Popup, Stepper } from 'antd-mobile'
 import { HeartFill, HeartOutline, CalendarOutline } from 'antd-mobile-icons'
+import HotelSearch from '@/components/common/HotelSearch'
 
 interface Iprops {
   routerInfo: any;
@@ -116,24 +117,26 @@ const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
 
   return (
     <div className={Styles['container']}>
-      <p className={Styles['title']}>
-        {shopInfo.name}
-        {
-          shopInfo.isStar ? <HeartFill onClick={() => onStar()} style={{color: '#ffe033'}} /> : <HeartOutline onClick={() => onStar()} />
-        }  
-      </p>
-      <div className={Styles['rate-box']}>
-        <Rate value={shopInfo.start} style={{'--star-size': '18px', marginRight: '15px'}} />
-        <span>{shopInfo.score}</span>
-      </div>
-      <div className={Styles['img-box']}>
-        {
-          pics.map((item, index) => (
-            <div key={index} className={ index < 2 ? Styles['img-item'] : Styles['img-item-3'] }>
-              <Image src={item} height={120} />
-            </div>  
-          ))
-        }
+      <div className={Styles['shop-box']}>
+        <p className={Styles['title']}>
+          {shopInfo.name}
+          {
+            shopInfo.isStar ? <HeartFill onClick={() => onStar()} style={{color: '#ffe033'}} /> : <HeartOutline onClick={() => onStar()} />
+          }  
+        </p>
+        <div className={Styles['rate-box']}>
+          <Rate value={shopInfo.start} style={{'--star-size': '18px', marginRight: '15px'}} />
+          <span>{shopInfo.score}</span>
+        </div>
+        <div className={Styles['img-box']}>
+          {
+            pics.map((item, index) => (
+              <div key={index} className={ index < 2 ? Styles['img-item'] : Styles['img-item-3'] }>
+                <Image src={item} height={120} />
+              </div>  
+            ))
+          }
+        </div>
       </div>
       <div className={Styles['tag-box']}>
         {
@@ -152,42 +155,12 @@ const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
         </span>
       </div>
       <div className={Styles['check-box']}>
-        <div className={Styles['time-item']}>
-          <div className={Styles['check-in-box']} onClick={() => setShowTime(true)}>
-            <div className={Styles['check-in-box-item']}>
-              <span>Check-in date</span>
-              <p>{startTime}</p>
-            </div>
-            <div className={Styles['check-in-box-item']}>
-              <span>Check-out date</span>
-              <p>{endTime}</p>
-            </div>
-          </div>
-        </div>
-
-        <div className={Styles['person-item']} onClick={() => setShowUser(true)}>
-          <p>Rooms and guests</p>
-          <div className={Styles['check-in-box']}>
-            <p>{ user.rooms } room</p>
-            <i className={Styles['point']} />
-            <p>{ user.adults } adults</p>
-            <i className={Styles['point']} />
-            <p>{ user.children } children</p>
-          </div>
-        </div>
+        <HotelSearch hideBtn={true} hideSearch={true} />
       </div>
       <div className={Styles['order-btn-box']}>
-        <Button
-          onClick={() => handleOrder()}
-          block
-          // shape='rounded'
-          type='submit'
-          color='primary'
-          size='large'
-          // style={{ '--text-color': '#0F131A' }}>
-          style={{'--adm-color-primary': '#ffe033', position: 'absolute', bottom: 0}}>
-          Select Rooms
-        </Button>
+        <div className="theme-btn" onClick={() => handleOrder()}>
+          <p>Select Rooms</p>
+        </div>
       </div>
       <CalendarPicker
         min={dayjs().toDate()}

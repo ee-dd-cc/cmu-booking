@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 999;
+  width: 100%;
+  padding: 20px 0;
+  background: #5669FF;
+  color: #FFF;
+  text-align: center;
+  font-family: "SF Pro";
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 590;
+  line-height: 22px; /* 129.412% */
+  .left {
+    width: 50px;
+  }
+  .right {
+    width: 50px;
+  }
+}

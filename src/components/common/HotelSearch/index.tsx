@@ -3,11 +3,13 @@ import dayjs from 'dayjs'
 import Styles from './style.module.scss'
 import { CITY_LIST } from '@/constants/booking'
 import { goBookingRouter } from '@/utils/router'
-import { Form, Input, Button, CalendarPicker, Popup, Stepper, Modal, List, Avatar, SearchBar } from 'antd-mobile'
-import { SearchOutline, CalendarOutline, UserOutline, LeftOutline } from 'antd-mobile-icons'
+import { Input, Button, CalendarPicker, Popup, Stepper, Modal, List, Avatar, SearchBar } from 'antd-mobile'
+import { SearchOutline, LeftOutline } from 'antd-mobile-icons'
 
 interface Iprops {
-  onSearch?: any
+  onSearch?: any,
+  hideBtn?: boolean;
+  hideSearch?: boolean
 }
 
 interface Istate {
@@ -16,7 +18,7 @@ interface Istate {
 const initState = {
 }
 
-const HotelSearch: React.FC<Iprops> = ({onSearch}) => {
+const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
   const [showTime, setShowTime] = useState(false)
   const [showUser, setShowUser] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
@@ -99,49 +101,33 @@ const HotelSearch: React.FC<Iprops> = ({onSearch}) => {
 
   return (
     <div className={Styles['container']}>
-      <Form
-        layout='horizontal'
-        footer={
-          <Button
-            onClick={() => formConfirm()}
-            block
-            shape='rounded'
-            type='submit'
-            color='primary'
-            size='large'
-            style={{ '--text-color': '#0F131A' }}>
-            Search
-          </Button>
-        }>
-        <Form.Item name='name'>
-          <div className={Styles['form-item']} onClick={() => hanldeShowSearch()}>
-            <SearchOutline className={Styles['form-item-icon']} />
-            <Input placeholder='Enter your destination' value={destination} readOnly />
+      {
+        !hideSearch &&
+        <div className={`${Styles['border-box']} ${Styles['destination-box']}`} onClick={() => hanldeShowSearch()}>
+          <SearchOutline className={Styles['form-item-icon']} />
+          <Input placeholder='Enter your destination' value={destination} readOnly />
+        </div>
+      }
+      <div className={`${Styles['border-box']} ${Styles['room-type-box']}`} onClick={() => setShowUser(true)}>
+        <span>Room type</span>
+        <p>{user.rooms} room - {user.adults} adults - {user.children} children</p>
+      </div>
+      <div className={Styles['check-box']} onClick={() => setShowTime(true)}>
+        <div className={Styles['border-box']}>
+          <span>Check in</span>
+          <p>{startTime}</p>
+        </div>
+        <div className={Styles['border-box']}>
+          <span>Check out</span>
+          <p>{endTime}</p>
+        </div>
+      </div>
+      {
+        !hideBtn &&
+          <div className="theme-btn" style={{marginTop: '32px'}} onClick={() => formConfirm()}>
+            <p>Search</p>
           </div>
-        </Form.Item>
-        <Form.Item>
-          <div className={Styles['form-item']}>
-            <CalendarOutline className={Styles['form-item-icon']} />
-            <div className={Styles['check-in-box']} onClick={() => setShowTime(true)}>
-              <p>{ startTime ? startTime : <span>Check-in date</span> }</p>
-              <i className={Styles['line']} />
-              <p>{ endTime ? endTime : <span>Check-out date</span> }</p>
-            </div>
-          </div>
-        </Form.Item>
-        <Form.Item>
-          <div className={Styles['form-item']}>
-            <UserOutline className={Styles['form-item-icon']} />
-            <div className={Styles['check-in-box']} onClick={() => setShowUser(true)}>
-              <p>{ user.rooms } room</p>
-              <i className={Styles['point']} />
-              <p>{ user.adults } adults</p>
-              <i className={Styles['point']} />
-              <p>{ user.children } children</p>
-            </div>
-          </div>
-        </Form.Item>
-      </Form>
+      }
       <CalendarPicker
         min={dayjs().toDate()}
         confirmText="Select"
@@ -175,7 +161,7 @@ const HotelSearch: React.FC<Iprops> = ({onSearch}) => {
           <div className={Styles['user-item']}>
             <span>Adults</span>
             <Stepper
-              min={0}
+              min={1}
               defaultValue={user.adults}
               onChange={val => { setAdults(val) }}
             />

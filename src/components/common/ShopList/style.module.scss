@@ -1,8 +1,11 @@
 .shop-item {
   display: flex;
   margin-bottom: 15px;
+  background-color: #fff;
+  border-radius: 8px;
   .right {
     flex: 1;
+    padding: 8px;
     padding-left: 20px;
   }
 }

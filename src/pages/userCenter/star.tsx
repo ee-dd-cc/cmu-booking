@@ -18,9 +18,9 @@ const star: React.FC<Iprops> = ({routerInfo}) => {
   useEffect(() => {
   }, [])
   return (
-    <>
+    <div className={Styles['container']}>
       <ShopList routerInfo={routerInfo} shopList={USER_STAR} />
-    </>
+    </div>
   )
 }
 export default star

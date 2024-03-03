@@ -98,9 +98,9 @@ const Payment: React.FC<Iprops> = ({}) => {
           ))
         }
       </List>
-      <Button className={Styles['login-btn']} onClick={() => setShow(true)} block type='submit' color='primary' shape='rounded' size='middle' fill='outline'>
-        Bind
-      </Button>
+      <div className="theme-btn" onClick={() => setShow(true)}>
+        <p>Bind</p>
+      </div>
       <Popup
         visible={show}
         showCloseButton

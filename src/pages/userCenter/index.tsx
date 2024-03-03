@@ -71,25 +71,27 @@ const UserCenter: React.FC<Iprops> = ({}) => {
     goBookingRouter({pathKey: path})
   }
   return (
-    <List className={Styles['list-container']}>
-      {
-        list.map((item, index) => (
-          <div key={index}>
-            {
-              item.show
-                ? <List.Item
-                    prefix={item.icon}
-                    extra={item.extra}
-                    onClick={() => goPath(item.pathKey)}
-                    clickable>
-                    { item.content }
-                  </List.Item>
-                : ''
-            }
-          </div>
-        ))
-      }
-    </List>
+    <div className={Styles['container']}>
+      <List className={Styles['list-container']}>
+        {
+          list.map((item, index) => (
+            <div key={index}>
+              {
+                item.show
+                  ? <List.Item
+                      prefix={item.icon}
+                      extra={item.extra}
+                      onClick={() => goPath(item.pathKey)}
+                      clickable>
+                      { item.content }
+                    </List.Item>
+                  : ''
+              }
+            </div>
+          ))
+        }
+      </List>
+    </div>
   )
 }
 export default UserCenter

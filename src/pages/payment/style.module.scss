@@ -1,10 +1,12 @@
 .container {
-  padding-bottom: 40px !important;
+  padding: 0 13.5px;
+  padding-top: 16px;
 }
 
 .list-container {
   margin-bottom: 20px;
   border-radius: 8px;
+  overflow: hidden;
 }
 
 .user-popup-container {

@@ -1,5 +1,5 @@
 // import 'antd/dist/reset.css'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import '@/styles/global.scss'
 import '@/styles/antReset.scss'
 import type { AppProps } from 'next/app'
@@ -9,8 +9,8 @@ import enUS from 'antd-mobile/es/locales/en-US'
 import HtmlHead from '@/components/HtmlHead'
 import PageHead from '@/components/PageHead'
 import PageBottom from '@/components/PageBottom'
-import { show } from 'antd-mobile/es/components/dialog/show'
 
+const bottomPath = ['/', '/userCenter']
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
@@ -19,17 +19,21 @@ export default function App({ Component, pageProps }: AppProps) {
     showAppMenu: false,
   }
   const [showHead, setShowHead] = useState(true)
-  function setGlobal(showAppMenu:boolean) {
-    global.showAppMenu = showAppMenu
-    menuRef.current && menuRef.current?.showAppMenu(showAppMenu)
-  }
+  const [showBottom, setShowBottom] = useState(true)
+
+  useEffect(() => {
+    const { pathname } = router
+    const index =  bottomPath.findIndex(item => item === pathname)
+    setShowBottom(index !== -1)
+  }, [router])
+
   return (
     <>
       <ConfigProvider locale={enUS}>
         <HtmlHead pageProps={pageProps}  />
         <section className="layout-container" style={{ paddingTop: showHead ? '62px' : '' }}>
           {
-            showHead && <PageHead setGlobal={setGlobal} global={global} routerInfo={router} />
+            <PageHead routerInfo={router} />
           }
           <main className='layout-main'>
             <aside className="sider-container sider-left">
@@ -44,7 +48,7 @@ export default function App({ Component, pageProps }: AppProps) {
               </aside>
             </div>
             <div className="layout-main-bottom">
-              <PageBottom routerInfo={router} />
+              { showBottom && <PageBottom routerInfo={router} /> }
             </div>
           </main>
         </section>

@@ -37,13 +37,14 @@ const Login: React.FC<Iprops> = ({changeType}) => {
       onFinish={() => loginSubmit()}
       footer={
         <div className={Styles['form-footer']}>
+          <span className={Styles['form-des']} onClick={() => changeType('reset')}>Forget password?</span>
+          
           <Button className={Styles['login-btn']} block type='submit' color='primary' shape='rounded' size='middle'>
             Login
           </Button>
           <Button className={Styles['register-btn']} onClick={() => changeType('register')} block color='primary' fill='outline' shape='rounded' size='middle'>
             Register
           </Button>
-          <span className={Styles['form-des']} onClick={() => changeType('reset')}>Forget password?</span>
         </div>
       }
     >

@@ -179,10 +179,47 @@ const USER_INFO_SET = {
 
 const ROOM_LIST = [
   {
+    id: 1,
+    name: 'Superior Double or Twin',
+    tag: [],
+    no: '218-1',
+    price: 588
+  },
+  {
+    id: 2,
+    name: 'Deluxe Double or Twin Room',
+    tag: [],
+    no: '318-2',
+    price: 688
+  },
+  {
+    id: 3,
     name: 'Superior Double or Twin Room',
     tag: [],
+    no: '418-9',
     price: 588
-  }
+  },
+  {
+    id: 4,
+    name: 'Superior Double or Twin',
+    tag: [],
+    no: '218-1',
+    price: 500
+  },
+  {
+    id: 5,
+    name: 'Superior Double or Twin',
+    tag: [],
+    no: '218-1',
+    price: 800
+  },
+  {
+    id: 6,
+    name: 'Superior Double or Twin',
+    tag: [],
+    no: '218-1',
+    price: 600
+  },
 ]
 
 const PAYMENT_LIST = [

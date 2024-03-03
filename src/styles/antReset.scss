@@ -44,18 +44,35 @@
 .adm-button:not(.adm-button-default) {
   // background-color: #ffe033 !important;
   // border-color: #ffe033 !important;
-  --text-color: #0F131A !important
+  // --text-color: #0F131A !important
 }
 
 
 .adm-button:not(.adm-button-default).adm-button-fill-outline {
-  background-color: transparent !important;
+  // background-color: transparent !important;
   // color: #ffe033;
 }
 
+.adm-capsule-tabs-tab-active {
+  background-color: #5669FF !important;
+}
+
+.adm-capsule-tabs-header {
+  border-bottom: none !important;
+  background-color: #fff;
+  border-radius: 8px;
+}
+
+.adm-card-header:not(:last-child) {
+  border-bottom: none !important;
+}
+
+.adm-card-header {
+  padding: 0 !important;
+}
+
 * {
-  // --adm-color-primary: #ffe033;
-  --adm-color-text-light-solid: #0F131A;
+  --adm-color-primary: #5669FF
 }
 
 // .adm-button-danger 

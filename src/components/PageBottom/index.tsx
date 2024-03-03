@@ -20,11 +20,9 @@ const initState = {
 }
 
 const PageBottom: React.FC<Iprops> = ({routerInfo}) => {
-  console.log('----routerInfo', routerInfo)
   const [show, setShow] = useState(false)
   const [activeKey, setActiveKey] = useState('home')
   const [userInfo, setUserInfo] = useState(USER_INFO)
-  // const [state, setState] = useState<Istate>(initState)
   const tabs = [
     {
       key: 'home',

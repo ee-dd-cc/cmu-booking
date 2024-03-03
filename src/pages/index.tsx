@@ -25,46 +25,51 @@ const Home: NextPage<Props> = (props) => {
     goBookingRouter({pathKey: 'search', query: sInfo})
   }
   return (
-    <>
-      <CapsuleTabs activeKey={activeKey} onChange={val => setActiveKey(val)}>
-        <CapsuleTabs.Tab title='Hotel' key='hotel'>
-          {/* Alipay */}
-        </CapsuleTabs.Tab>
-        <CapsuleTabs.Tab title='Villas' key='villas'>
-          {/* Alipay */}
-        </CapsuleTabs.Tab>
-        <CapsuleTabs.Tab title='Apartments' key='apartments'>
-          {/* 西红柿 */}
-        </CapsuleTabs.Tab>
-        <CapsuleTabs.Tab title='Holiday parks' key='holiday'>
-          {/* 蚂蚁 */}
-        </CapsuleTabs.Tab>
-      </CapsuleTabs>
-      <HotelSearch />
-      <Card
-        className={Styles['card-container']}
-        title={
-          <div className={Styles['card-title']}>
-            <p>Explore Thailand</p>
-            <span className={Styles['card-title-des']}>These popular destinations have a lot to offer</span>
-          </div>
-        }
-        style={{ borderRadius: '16px' }}
-      >
-        <div className={Styles['card-content']}>
-          {
-            CITY_LIST.map((item, index) => (
-              <div
-                className={(index + 1) % 2 === 0 ? `${Styles['card-content-item-2']}` : Styles['card-content-item']}
-                onClick={() => goto(item)}
-                key={index}>
-                <CityCard cityInfo={item}/>
-              </div>
-            ))
+    <div className={Styles['container']}>
+      <div className={Styles['top-bg']}>
+        
+      </div>
+      <div className={Styles['hotel-search-box']}>
+        <HotelSearch />
+      </div>
+      <div className={Styles['common-box']}>
+        <CapsuleTabs activeKey={activeKey} onChange={val => setActiveKey(val)}>
+          <CapsuleTabs.Tab title='Hotel' key='hotel'>
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='Villas' key='villas'>
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='Apartments' key='apartments'>
+          </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='Holiday parks' key='holiday'>
+          </CapsuleTabs.Tab>
+        </CapsuleTabs>
+      </div>
+      <div className={Styles['common-box']}>
+        <Card
+          className={Styles['card-container']}
+          title={
+            <div className={Styles['card-title']}>
+              <p>Explore Thailand</p>
+              <span className={Styles['card-title-des']}>These popular destinations have a lot to offer</span>
+            </div>
           }
-        </div>
-      </Card>
-    </>
+          style={{ borderRadius: '16px' }}
+        >
+          <div className={Styles['card-content']}>
+            {
+              CITY_LIST.map((item, index) => (
+                <div
+                  className={(index + 1) % 2 === 0 ? `${Styles['card-content-item-2']}` : Styles['card-content-item']}
+                  onClick={() => goto(item)}
+                  key={index}>
+                  <CityCard cityInfo={item}/>
+                </div>
+              ))
+            }
+          </div>
+        </Card>
+      </div>
+    </div>
   )
 }
 // export const getServerSideProps: GetServerSideProps = async () => {

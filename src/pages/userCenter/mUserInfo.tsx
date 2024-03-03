@@ -6,7 +6,7 @@ import dayjs from 'dayjs'
 import { goBookingRouter } from '@/utils/router'
 import { USER_INFO, USER_INFO_SET } from '@/constants/booking'
 import { getUserInfo, setUserInfo } from '@/utils/storage'
-import { Form, Button, Input, DatePicker, Radio, Avatar, Toast } from 'antd-mobile'
+import { Form, Button, Input, DatePicker, Radio, Avatar, Toast, Divider } from 'antd-mobile'
 
 interface Iprops {
   routerInfo: any
@@ -58,13 +58,14 @@ const mUserInfo: React.FC<Iprops> = ({ routerInfo }) => {
     goBookingRouter({pathKey: 'userCenter'})
   }
   return (
-    <>
+    <div className={Styles['container']}>
       <Form
         footer={
-          <Button block onClick={() => onSubmit()} color='primary' shape='rounded' size='large'>
-            Submit
-          </Button>
+          <div className="theme-btn" onClick={() => onSubmit()} color='primary'>
+            <p>Submit</p>
+          </div>
         }
+        style={{borderRadius: '8px', overflow: 'hidden'}}
       >
         <Form.Item name='avatar' label='Avatar' rules={[{ required: true }]}>
           <Avatar src={avatar} />
@@ -106,7 +107,7 @@ const mUserInfo: React.FC<Iprops> = ({ routerInfo }) => {
           </DatePicker>
         </Form.Item>
       </Form>
-    </>
+    </div>
   )
 }
 export default mUserInfo
