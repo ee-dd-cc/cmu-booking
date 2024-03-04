@@ -16,7 +16,7 @@ interface Istate {
 const initState = {
 }
 
-const phoneRegex = /^\d{8,}$/
+const phoneRegex = /\b\d{10}\b/
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z]).{8,}$/
 
 const Login: React.FC<Iprops> = ({changeType}) => {
@@ -27,7 +27,7 @@ const Login: React.FC<Iprops> = ({changeType}) => {
   }, [])
 
   const loginSubmit = () => {
-    if (phone != '66666666' && phone != '99999999' && phone != '88888888') {
+    if (phone != '6666666666' && phone != '9999999999' && phone != '8888888888') {
       Modal.show({
         content: <div>
           <p>The account does not exist, please register !</p>
@@ -82,7 +82,7 @@ const Login: React.FC<Iprops> = ({changeType}) => {
         label='Phone Number'
         rules={[
           { required: true, message: 'Please enter phone number' },
-          { pattern: phoneRegex, message: 'More than 8 number' }
+          { pattern: phoneRegex, message: 'Enter 10 digits' }
         ]}
       >
         <div className={Styles['form-item']}>
