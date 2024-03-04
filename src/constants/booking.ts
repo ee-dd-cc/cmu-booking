@@ -359,6 +359,24 @@ const ORDER_LIST = [
     startTime: '2024-3-4',
     endTime: '2024-3-6'
   },
+  {
+    id: 6,
+    name: 'SHA Extra Plus',
+    imgSrc: 'https://cf.bstatic.com/xdata/images/hotel/square600/470004451.webp?k=f87d351df9d943679ad890e666c7cb3f2e7964d5b980ba59f7be9790fa54de28&o=',
+    positon: 'Bangkok',
+    des: 'Includes taxes and charges',
+    score: 8.1,
+    start: 4.5,
+    price: 607,
+    isStar: false,
+    day: 2,
+    people: 2,
+    roomType: 'Suite',
+    no: '236-6',
+    status: 'paid',
+    startTime: '2024-3-4',
+    endTime: '2024-3-6'
+  },
 ]
 
 export {

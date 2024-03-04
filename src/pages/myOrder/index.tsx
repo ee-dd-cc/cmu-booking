@@ -3,6 +3,7 @@ import Styles from './style.module.scss'
 import dayjs from 'dayjs'
 import { ORDER_LIST } from '@/constants/booking'
 import { CapsuleTabs, Image, Rate, Toast, Dialog } from 'antd-mobile'
+import { goBookingRouter } from '@/utils/router'
 
 interface Iprops {
   
@@ -25,7 +26,8 @@ const index: React.FC<Iprops> = ({}) => {
     return new Intl.NumberFormat('en-US').format(price)
   }
 
-  const handleCancel = (id: number) => {
+  const handleCancel = (event: any, id: number) => {
+    event.stopPropagation() // 阻止事件冒泡
     Dialog.confirm({
       content: 'Cancel or not ?',
       confirmText: 'Comfirm',
@@ -42,6 +44,22 @@ const index: React.FC<Iprops> = ({}) => {
     })
   }
 
+  const handleClick = (item: any) => {
+    const { status, id } = item
+    let book = 'book'
+    switch (status) {
+      case 'active':
+        book = 'pay'
+        break;
+      case 'paid':
+        book = 'paid'
+        break;
+      default:
+        break;
+    }
+    goBookingRouter({pathKey: 'order', query: { id, book }})
+  }
+
   // duration 单位 s
   const sleep = (duration: number) => {
     return new Promise(resolve => setTimeout(resolve, duration * 1000));
@@ -51,8 +69,9 @@ const index: React.FC<Iprops> = ({}) => {
     <div className={Styles['container']}>
       <div className={Styles['tab-box']}>
         <CapsuleTabs activeKey={activeKey} onChange={val => setActiveKey(val)}>
-          <CapsuleTabs.Tab title='Active' key='active'>
+          <CapsuleTabs.Tab title='Booking' key='active'>
           </CapsuleTabs.Tab>
+          <CapsuleTabs.Tab title='Paid' key='paid' />
           <CapsuleTabs.Tab title='Past' key='past'>
           </CapsuleTabs.Tab>
           <CapsuleTabs.Tab title='Cancelled' key='cancel'>
@@ -61,7 +80,7 @@ const index: React.FC<Iprops> = ({}) => {
       </div>
       {
         orderList.map((item, index) => (
-          <div key={index} className={Styles['room-item']}>
+          <div key={index} className={Styles['room-item']} onClick={() => handleClick(item)}>
             <div className={Styles['left']}>
               <Image src={item.imgSrc} width={100} height={100} fit='fill' style={{borderRadius: '8px'}} />
             </div>
@@ -96,10 +115,10 @@ const index: React.FC<Iprops> = ({}) => {
                   }
                 </div>
                 {
-                  activeKey === 'active'
+                  activeKey === 'active' || activeKey === 'paid'
                   ?
                   <div className={Styles['btn-box']}>
-                    <div className="theme-btn-1" onClick={() => handleCancel(item.id)}>
+                    <div className="theme-btn-1" onClick={(event) => handleCancel(event, item.id)}>
                       <p>cancel</p>
                     </div>
                   </div>

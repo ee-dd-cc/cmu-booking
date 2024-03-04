@@ -107,7 +107,7 @@ const Order: React.FC<Iprops> = ({routerInfo}) => {
 
   const handleOrder = () => {
     Dialog.confirm({
-      content: `Whether to ${status === 'pay' ? 'pay' : 'book'} ?` ,
+      content: `Whether to ${status === 'pay' ? 'pay' : 'booking'} ?` ,
       confirmText: 'Comfirm',
       cancelText: 'Cancel',
       onConfirm: async () => {
@@ -202,9 +202,17 @@ const Order: React.FC<Iprops> = ({routerInfo}) => {
       }
       {/* <div className={status === 'pay' ? `${Styles['order-btn-box']} ${Styles['pay']}` : Styles['order-btn-box']}> */}
       <div className={Styles['order-btn-box']}>
-        <div className="theme-btn" onClick={() => handleOrder()}>
-          <p>{status === 'pay' ? 'pay' : 'Booking'}</p>
-        </div>
+        {
+          status === 'paid'
+          ?
+          <div className="theme-btn" onClick={() => handleCancel()}>
+            <p>Cancel</p>
+          </div>
+          :
+          <div className="theme-btn" onClick={() => handleOrder()}>
+            <p>{status === 'pay' ? 'pay' : 'Booking'}</p>
+          </div>
+        }
       </div>
     </div>
   )
