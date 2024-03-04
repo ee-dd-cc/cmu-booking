@@ -34,7 +34,7 @@ const index: React.FC<Iprops> = ({}) => {
               </div>
               <div className={Styles['btn-box']}>
                 <div className="theme-btn-1" onClick={() => handleOrder(item.id)}>
-                  <p>Order</p>
+                  <p>Select</p>
                 </div>
               </div>
             </div>

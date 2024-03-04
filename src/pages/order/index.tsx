@@ -38,16 +38,18 @@ const SHOP_TAG = [
   // },
 ]
 
-const index: React.FC<Iprops> = ({routerInfo}) => {
+const Order: React.FC<Iprops> = ({routerInfo}) => {
   const { query = {} } = routerInfo
+  const [status, setStatus] = useState('book')
   const [activeKey, setActiveKey] = useState(PAYMENT_LIST[0].key)
   const [shopInfo, setShopInfo] = useState(ROOM_LIST[0])
   const [pics, setPics] = useState(SHOP_PIC_LIST.filter((item, index) => index < 5))
   useEffect(() => {
-    const { id } = query
+    const { id, book = 'book' } = query
     const item = ROOM_LIST.find(item => item.id === id)
     const tempPics = shuffleArray(SHOP_PIC_LIST).filter((itm:any, index:number) => index < 5)
     setPics(tempPics)
+    setStatus(book)
     item && setShopInfo(item)
   }, [routerInfo.query])
 
@@ -71,9 +73,41 @@ const index: React.FC<Iprops> = ({routerInfo}) => {
     return new Intl.NumberFormat('en-US').format(price)
   }
 
+  const handleUpdate = () => {
+    Dialog.confirm({
+      content: `Whether to update the booking information ?` ,
+      confirmText: 'Comfirm',
+      cancelText: 'Cancel',
+      onConfirm: async () => {
+        await sleep(1.5)
+        goBookingRouter({pathKey: 'myOrder'})
+        Toast.show({
+          icon: 'success',
+          content: 'success',
+        })
+      },
+    })
+  }
+  const handleCancel = () => {
+    Dialog.confirm({
+      content: `Whether to cancel the booking ?` ,
+      confirmText: 'Comfirm',
+      cancelText: 'Cancel',
+      onConfirm: async () => {
+        await sleep(1.5)
+        setStatus('book')
+        // goBookingRouter({pathKey: 'order', query: {id: shopInfo.id, book: 'book'}})
+        Toast.show({
+          icon: 'success',
+          content: 'success',
+        })
+      },
+    })
+  }
+
   const handleOrder = () => {
     Dialog.confirm({
-      content: 'Whether to pay ?',
+      content: `Whether to ${status === 'pay' ? 'pay' : 'book'} ?` ,
       confirmText: 'Comfirm',
       cancelText: 'Cancel',
       onConfirm: async () => {
@@ -141,22 +175,38 @@ const index: React.FC<Iprops> = ({routerInfo}) => {
       <div className={Styles['des-box']}>
         <p className={Styles['box-title']} style={{marginBottom: 0}}>Price for 2 night:&nbsp;&nbsp;&nbsp;THB {handlePrice(shopInfo.price * 2)}</p>
       </div>
-      <div className={Styles['des-box']}>
-        <p className={Styles['box-title']}>Payment Method</p>
-        <CapsuleTabs activeKey={activeKey} onChange={val => setActiveKey(val)}>
-          {
-            PAYMENT_LIST.map((item) => (
-              <CapsuleTabs.Tab key={item.key} title={item.content} />
-            ))
-          }
-        </CapsuleTabs>
-      </div>
+      {
+        status === 'pay'
+        &&
+        <>
+          <div className={Styles['des-box']}>
+            <p className={Styles['box-title']}>Payment Method</p>
+            <CapsuleTabs activeKey={activeKey} onChange={val => setActiveKey(val)}>
+              {
+                PAYMENT_LIST.map((item) => (
+                  <CapsuleTabs.Tab key={item.key} title={item.content} />
+                ))
+              }
+            </CapsuleTabs>
+          </div>
+          <div className={Styles['btn-box']}>
+            <div className="theme-btn-border" onClick={() => handleCancel()}>
+              <p>cancel</p>
+            </div>
+            <div className="theme-btn" onClick={() => handleUpdate()}>
+              <p>update</p>
+            </div>
+          </div>
+        
+        </>
+      }
+      {/* <div className={status === 'pay' ? `${Styles['order-btn-box']} ${Styles['pay']}` : Styles['order-btn-box']}> */}
       <div className={Styles['order-btn-box']}>
         <div className="theme-btn" onClick={() => handleOrder()}>
-          <p>Pay</p>
+          <p>{status === 'pay' ? 'pay' : 'Booking'}</p>
         </div>
       </div>
     </div>
   )
 }
-export default index
+export default Order

@@ -35,7 +35,7 @@ const routePath = [
   },
   {
     pathname: '/order',
-    pageTitle: 'Payment',
+    pageTitle: 'Room information',
   },
   {
     pathname: '/userCenter/mUserInfo',
