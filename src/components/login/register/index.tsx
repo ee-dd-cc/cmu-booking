@@ -41,7 +41,7 @@ const Register: React.FC<Iprops> = ({}) => {
       })
       return
     }
-    if (phone == '66666666') {
+    if (phone == '6666666666') {
       Modal.show({
         content: <div>
           <p>Account already exists !</p>
