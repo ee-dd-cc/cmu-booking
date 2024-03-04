@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Styles from './style.module.scss'
 import { ROOM_LIST, SHOP_PIC_LIST, PAYMENT_LIST } from '@/constants/booking'
+import { getUserInfo } from '@/utils/storage'
 import { Image, CapsuleTabs, Toast, Dialog } from 'antd-mobile'
 import HotelSearch from '@/components/common/HotelSearch'
 import { goBookingRouter } from '@/utils/router'
@@ -79,6 +80,14 @@ const Order: React.FC<Iprops> = ({routerInfo}) => {
       confirmText: 'Comfirm',
       cancelText: 'Cancel',
       onConfirm: async () => {
+        if (!getUserInfo().token) {
+          await sleep(0.5)
+          Toast.show({
+            // icon: 'fail',
+            content: 'Please login first !',
+          })
+          return
+        }
         await sleep(1.5)
         goBookingRouter({pathKey: 'myOrder'})
         Toast.show({
@@ -94,6 +103,14 @@ const Order: React.FC<Iprops> = ({routerInfo}) => {
       confirmText: 'Comfirm',
       cancelText: 'Cancel',
       onConfirm: async () => {
+        if (!getUserInfo().token) {
+          await sleep(0.5)
+          Toast.show({
+            // icon: 'fail',
+            content: 'Please login first !',
+          })
+          return
+        }
         await sleep(1.5)
         setStatus('book')
         // goBookingRouter({pathKey: 'order', query: {id: shopInfo.id, book: 'book'}})
@@ -111,6 +128,14 @@ const Order: React.FC<Iprops> = ({routerInfo}) => {
       confirmText: 'Comfirm',
       cancelText: 'Cancel',
       onConfirm: async () => {
+        if (!getUserInfo().token) {
+          await sleep(0.5)
+          Toast.show({
+            // icon: 'fail',
+            content: 'Please login first !',
+          })
+          return
+        }
         await sleep(1.5)
         goBookingRouter({pathKey: 'myOrder'})
         Toast.show({
