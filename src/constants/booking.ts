@@ -2,6 +2,7 @@ const CITY_LIST = [
   {
     imgSrc: 'https://r-xx.bstatic.com/xdata/images/city/263x210/977255.jpg?k=701d538f315c17d17ca4eb5ff1a7bd0f8ed9222acebdaa6a212b638d04bef1c1&o=',
     positon: 'Bangkok',
+    subPosition: 'Grand palace',
     count: '3,812',
     des: 'Bangkok Province, Thailand'
   },
@@ -32,6 +33,7 @@ const CITY_LIST = [
   {
     imgSrc: 'https://r-xx.bstatic.com/xdata/images/city/170x136/688668.jpg?k=40aabb5d313c37dddc20dde7b21d774453d2d096f6f8ce72ec63a9590dfa9de1&o=',
     positon: 'Chiang Mai',
+    subPosition: 'Nimman',
     count: '2,912',
     des: 'Chiang Mai Province, Thailand'
   }

@@ -4,6 +4,11 @@
   background: #FFF;
   overflow: hidden;
 
+  .position-box {
+    display: flex;
+    justify-content: space-between;
+  }
+
   .destination-box {
     display: flex;
     align-items: center;

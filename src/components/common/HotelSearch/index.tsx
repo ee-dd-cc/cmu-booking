@@ -4,7 +4,7 @@ import Styles from './style.module.scss'
 import { CITY_LIST } from '@/constants/booking'
 import { goBookingRouter } from '@/utils/router'
 import { Input, Button, CalendarPicker, Popup, Stepper, Modal, List, Avatar, SearchBar } from 'antd-mobile'
-import { SearchOutline, LeftOutline } from 'antd-mobile-icons'
+import { SearchOutline, LeftOutline, DownFill } from 'antd-mobile-icons'
 
 interface Iprops {
   onSearch?: any,
@@ -22,7 +22,8 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
   const [showTime, setShowTime] = useState(false)
   const [showUser, setShowUser] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
-  const [destination, setDestination] = useState('')
+  const [destination, setDestination] = useState('Chiang Mai')
+  const [positon, setPosition] = useState('Nimman')
   const [searchVal, setSearchVal] = useState('')
   const [startTime, setStartTime] = useState('')
   const [endTime, setEndTime] = useState('')
@@ -50,9 +51,12 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
     setSearchVal('')
   }
 
-  const searchConfirm = (name: string) => {
-    setDestination(name)
+  const searchConfirm = (position: any) => {
     setShowSearch(false)
+    if (position !== destination) {
+      setDestination(position)
+      setPosition('')
+    }
   }
 
   const timeConfirm = (val: any) => {
@@ -68,10 +72,10 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
   }
 
   const formConfirm = () => {
-    if (!destination) {
+    if (!destination || !positon) {
       Modal.show({
         content: <div>
-          <p>Please enter your destination !</p>
+          <p>Please enter your city or position !</p>
           <div style={{display: 'flex', 'justifyContent': 'flex-end'}}>
             <Button color='primary' fill='none' onClick={() => Modal.clear()}>OK</Button>
           </div>
@@ -103,9 +107,15 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
     <div className={Styles['container']}>
       {
         !hideSearch &&
-        <div className={`${Styles['border-box']} ${Styles['destination-box']}`} onClick={() => hanldeShowSearch()}>
-          <SearchOutline className={Styles['form-item-icon']} />
-          <Input placeholder='Enter your destination' value={destination} readOnly />
+        <div className={Styles['position-box']}>
+          <div className={`${Styles['border-box']} ${Styles['destination-box']}`} style={{width: '100px', marginRight: '10px'}} onClick={() => hanldeShowSearch()}>
+            <p style={{ fontSize: '14px', marginRight: '5px' }}>{destination}</p>
+            <DownFill />
+          </div>
+          <div className={`${Styles['border-box']} ${Styles['destination-box']}`} style={{flex: 1}}>
+            <SearchOutline className={Styles['form-item-icon']} />
+            <Input placeholder='Enter your  position' value={positon} onChange={val => setPosition(val)}  />
+          </div>
         </div>
       }
       <div className={`${Styles['border-box']} ${Styles['room-type-box']}`} onClick={() => setShowUser(true)}>
@@ -191,7 +201,7 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
           <p className={Styles['close']}><LeftOutline onClick={() => setShowSearch(false)} /></p>
           <SearchBar
             style={{height: '40px'}}
-            placeholder='Enter your destination'
+            placeholder='Enter your  city'
             value={searchVal}
             onChange={val => setSearchVal(val)}
             showCancelButton />
@@ -206,6 +216,13 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
                     prefix={<Avatar src={item.imgSrc} />}
                     description={item.des}
                   >
+                    {/* {
+                      item.subPosition ?
+                      <div>
+                        <span>{item.subPosition} - {item.positon}</span>
+                      </div>
+                      : <>{item.positon}</>
+                    } */}
                     {item.positon}
                   </List.Item>
               ))
