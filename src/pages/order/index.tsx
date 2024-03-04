@@ -3,6 +3,7 @@ import Styles from './style.module.scss'
 import { ROOM_LIST, SHOP_PIC_LIST, PAYMENT_LIST } from '@/constants/booking'
 import { getUserInfo } from '@/utils/storage'
 import { Image, CapsuleTabs, Toast, Dialog } from 'antd-mobile'
+import { LocationFill } from 'antd-mobile-icons'
 import HotelSearch from '@/components/common/HotelSearch'
 import { goBookingRouter } from '@/utils/router'
 
@@ -155,14 +156,12 @@ const Order: React.FC<Iprops> = ({routerInfo}) => {
         <p className={Styles['title']}>
           {shopInfo.name}
           <span>No: { shopInfo.no }</span>
-          {
-            // shopInfo.isStar ? <HeartFill onClick={() => onStar()} style={{color: '#ffe033'}} /> : <HeartOutline onClick={() => onStar()} />
-          }  
         </p>
-        <div className={Styles['rate-box']}>
-          {/* <Rate value={shopInfo.start} style={{'--star-size': '18px', marginRight: '15px'}} /> */}
-          {/* <span>{shopInfo.score}</span> */}
+        <div className={Styles['position-box']}>
+          <LocationFill style={{ fontSize: '14px', marginRight: '5px', color: '#666' }} />
+          Suthep, Mueang Chiang Mai District
         </div>
+      
         <div className={Styles['img-box']}>
           {
             pics.map((item, index) => (

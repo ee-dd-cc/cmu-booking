@@ -4,7 +4,7 @@ import { SHOP_LIST, SHOP_PIC_LIST } from '@/constants/booking'
 import Styles from './style.module.scss'
 import { goBookingRouter } from '@/utils/router'
 import { Toast, Rate, Image } from 'antd-mobile'
-import { HeartFill, HeartOutline } from 'antd-mobile-icons'
+import { HeartFill, HeartOutline, LocationFill } from 'antd-mobile-icons'
 import HotelSearch from '@/components/common/HotelSearch'
 
 interface Iprops {
@@ -88,6 +88,10 @@ const ShopDetail: React.FC<Iprops> = ({routerInfo}) => {
         <div className={Styles['rate-box']}>
           <Rate value={shopInfo.start} style={{'--star-size': '18px', marginRight: '15px'}} />
           <span>{shopInfo.score}</span>
+        </div>
+        <div className={Styles['position-box']}>
+          <LocationFill style={{ fontSize: '14px', marginRight: '5px', color: '#666' }} />
+          Suthep, Mueang Chiang Mai District
         </div>
         <div className={Styles['img-box']}>
           {
