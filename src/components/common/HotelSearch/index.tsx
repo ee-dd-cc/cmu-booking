@@ -119,7 +119,7 @@ const HotelSearch: React.FC<Iprops> = ({onSearch, hideBtn, hideSearch}) => {
         </div>
       }
       <div className={`${Styles['border-box']} ${Styles['room-type-box']}`} onClick={() => setShowUser(true)}>
-        <span>Room type</span>
+        <span>Members</span>
         <p>{user.rooms} room - {user.adults} adults - {user.children} children</p>
       </div>
       <div className={Styles['check-box']} onClick={() => setShowTime(true)}>
